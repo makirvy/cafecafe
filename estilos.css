@@ -1,166 +1,62 @@
-/* ===== BASE ===== */
 body {
-    font-family: system-ui, -apple-system, sans-serif;
-    background: #f5f3ef; /* beige suave */
-    color: #3e2f2f;
+background: #f5f3ef;
+color: #3e2f2f;
+font-family: system-ui;
 }
 
-/* ===== NAV ===== */
-nav {
-    background: #6f4e37 !important; /* café */
+.sombra-cafe {
+background: #6f4e37;
+color: white;
+box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
-nav h1 {
-    color: #f4e9dc !important;
+.fondo-caja {
+background: #fffaf5;
 }
 
-/* ===== BOTONES PRODUCTOS ===== */
+.borde-izq {
+border-left: 2px solid #e5d6c8;
+}
+
 #grid-productos button {
-    background: #fffaf5;
-    border: 2px solid #d6bfa7;
-    border-radius: 16px;
-    padding: 16px;
-    font-weight: 700;
-    font-size: 15px;
-    color: #4b2e2e;
-    transition: all 0.15s ease;
+background: #fff;
+border-radius: 12px;
+padding: 14px;
+font-weight: bold;
+border: 1px solid #e5d6c8;
+min-height: 70px;
 }
 
 #grid-productos button:active {
-    background: #6f4e37;
-    color: #fffaf5;
+background: #6f4e37;
+color: white;
 }
 
-/* ===== CATEGORÍAS ===== */
-#filtros-categorias button {
-    background: #f3e8dc;
-    border: 1px solid #d6bfa7;
-    color: #5a3e2b;
+.btn-verde {
+background: #2e7d32;
+color: white;
+padding: 12px;
+border-radius: 10px;
 }
 
-#filtros-categorias .bg-blue-900 {
-    background: #6f4e37 !important;
-    color: #fffaf5 !important;
+.btn-azul {
+background: #1565c0;
+color: white;
+padding: 12px;
+border-radius: 10px;
 }
 
-/* ===== CARRITO ===== */
-#lista-pedido div {
-    display: flex;
-    justify-content: space-between;
-    padding: 6px 0;
-    font-size: 15px;
-    border-bottom: 1px solid #e5d6c8;
+.card {
+background: white;
+padding: 12px;
+border-radius: 12px;
+box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-/* ===== TOTAL ===== */
-#total-pagar {
-    font-size: 2.4rem;
-    font-weight: 900;
-    color: #4b2e2e;
+#lista-pedido {
+font-size: 16px;
 }
 
-/* ===== INPUT ===== */
-#efectivo-recibido {
-    border: 2px solid #d6bfa7;
-    border-radius: 10px;
-    padding: 12px;
-    font-size: 20px;
-    text-align: center;
-    background: #fffaf5;
-}
-
-#efectivo-recibido:focus {
-    border-color: #6f4e37;
-    outline: none;
-}
-
-/* ===== VUELTO ===== */
-#cambio-vuelto {
-    background: #e6f4ea;
-    border: 1px solid #b7dfc8;
-    border-radius: 10px;
-    padding: 10px;
-    font-weight: 700;
-}
-
-/* ===== TABLAS ===== */
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-th {
-    font-size: 13px;
-    font-weight: 800;
-    color: #5a3e2b;
-    padding: 10px;
-}
-
-td {
-    padding: 10px;
-    font-size: 14px;
-}
-
-/* ===== INVENTARIO ===== */
-#tabla-inventario td {
-    text-align: center;
-}
-
-#tabla-inventario td:first-child {
-    text-align: left;
-    font-weight: 700;
-}
-
-/* STOCK */
-.stock-ok {
-    color: #2e7d32;
-    font-weight: 800;
-}
-
-.stock-bajo {
-    color: #c62828;
-    font-weight: 800;
-}
-
-/* BOTÓN STOCK */
-#tabla-inventario button {
-    background: #6f4e37;
-    color: white;
-    border-radius: 8px;
-    padding: 4px 10px;
-    font-weight: bold;
-}
-
-#tabla-inventario button:active {
-    background: #4b2e2e;
-}
-
-/* ===== MODAL ===== */
-#modal-variaciones {
-    -webkit-backdrop-filter: blur(3px);
-    backdrop-filter: blur(3px);
-}
-
-#modal-variaciones button {
-    width: 100%;
-    padding: 12px;
-    border-radius: 10px;
-    border: 1px solid #d6bfa7;
-    margin-bottom: 8px;
-    font-weight: 600;
-    background: #fffaf5;
-}
-
-#modal-variaciones button:active {
-    background: #f3e8dc;
-}
-
-/* ===== SCROLL ===== */
-::-webkit-scrollbar {
-    width: 4px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #6f4e37;
-    border-radius: 10px;
+input {
+border: 1px solid #ccc;
 }
