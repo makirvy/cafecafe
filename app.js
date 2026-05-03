@@ -13,7 +13,7 @@ const productosIniciales = [
 { n:"Té Frío", p:0.85, s:11 }
 ]},
 
-{ id:"P004", nombre:"Té Caliente", precio:0.5, stock:44, categoria:"Bebidas" },
+{ id:"P004", nombre:"Té Caliente", precio:0.50, stock:44, categoria:"Bebidas" },
 
 { id:"P009", nombre:"Empanadas", categoria:"Comida", variaciones:[
 { n:"Emp Regular", p:1, s:10 },
@@ -21,7 +21,7 @@ const productosIniciales = [
 { n:"Emp Carne", p:1, s:19 }
 ]},
 
-{ id:"P011", nombre:"Mafa", precio:0.5, stock:46, categoria:"Snacks" },
+{ id:"P011", nombre:"Mafa", precio:0.50, stock:46, categoria:"Snacks" },
 
 { id:"P005", nombre:"Chocolate", precio:1, stock:13, categoria:"Snacks" },
 { id:"P006", nombre:"Galletas", precio:0.35, stock:71, categoria:"Snacks" },
