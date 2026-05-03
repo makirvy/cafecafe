@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#6f4e37">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAFETERIA | Caja</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="stylesheet" href="estilos.css">
+
+<style>
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-thumb { background: #1e3a8a; border-radius: 10px; }
+button { touch-action: manipulation; }
+</style>
+</head>
+
+<body class="bg-gray-100 h-screen flex flex-col overflow-hidden select-none">
+
+<!-- NAV -->
+<nav class="bg-blue-950 text-white p-4 flex justify-between items-center">
+<h1 class="font-black text-xl text-blue-400">CAFETERIA</h1>
+
+<div class="flex gap-6">
+<button onclick="cambiarVista('caja')" class="text-lg font-bold">🛒</button>
+<button onclick="cambiarVista('reportes')" class="text-lg font-bold">📊</button>
+</div>
+
+<div id="reloj" class="bg-blue-900 px-3 py-1 rounded">00:00</div>
+</nav>
+
+<!-- CAJA -->
+<main id="vista-caja" class="flex-1 flex">
+
+<section class="w-2/3 p-4 overflow-y-auto">
+
+<div id="filtros-categorias" class="flex gap-2 mb-4 overflow-x-auto"></div>
+
+<div id="grid-productos" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+
+</section>
+
+<section class="w-1/3 bg-white flex flex-col border-l">
+<div id="filtros-categorias" class="flex gap-2 mb-4 overflow-x-auto"></div>
+<div class="p-3 flex justify-between font-bold">
+<span>PEDIDO</span>
+<button onclick="limpiarPedido()">🗑️</button>
+</div>
+
+<div id="lista-pedido" class="flex-1 p-4 overflow-y-auto"></div>
+
+<div class="p-4 bg-gray-100 space-y-3">
+
+<div class="flex justify-between">
+<span>TOTAL</span>
+<span id="total-pagar" class="text-3xl font-black">$0.00</span>
+</div>
+
+<input type="number" id="efectivo-recibido" placeholder="Efectivo"
+class="w-full p-3 border rounded text-xl text-center">
+
+<div id="cambio-vuelto" class="text-center font-bold text-green-700">
+VUELTO: $0.00
+</div>
+
+<div class="grid grid-cols-2 gap-3">
+<button onclick="finalizarVenta('Efectivo')" class="bg-green-600 text-white p-4 rounded">EFECTIVO</button>
+<button onclick="finalizarVenta('Yappy')" class="bg-blue-500 text-white p-4 rounded">YAPPY</button>
+</div>
+
+</div>
+</section>
+</main>
+
+<!-- REPORTES -->
+<main id="vista-reportes" class="hidden flex-1 p-6 overflow-y-auto">
+
+<div class="grid md:grid-cols-3 gap-4 mb-6 text-center">
+<div class="bg-white p-4 rounded shadow">
+<p>Efectivo</p><p id="resumen-efectivo">$0.00</p>
+</div>
+<div class="bg-white p-4 rounded shadow">
+<p>Yappy</p><p id="resumen-yappy">$0.00</p>
+</div>
+<div class="bg-white p-4 rounded shadow">
+<p>Total</p><p id="resumen-total">$0.00</p>
+</div>
+</div>
+
+<div class="bg-white rounded shadow mb-8">
+<table class="w-full">
+<thead class="bg-gray-100">
+<tr>
+<th>Hora</th><th>Productos</th><th>Método</th><th>Total</th>
+</tr>
+</thead>
+<tbody id="tabla-ventas-cuerpo"></tbody>
+</table>
+</div>
+
+<!-- INVENTARIO -->
+<div class="bg-white rounded shadow">
+
+<div class="bg-gray-900 text-white p-3 font-bold flex justify-between">
+<span>INVENTARIO</span>
+<span class="text-xs text-gray-400">Tiempo real</span>
+</div>
+
+<table class="w-full">
+<thead class="bg-gray-100">
+<tr>
+<th>Producto</th><th>Tipo</th><th>Stock</th><th>+</th>
+</tr>
+</thead>
+<tbody id="tabla-inventario"></tbody>
+</table>
+
+</div>
+
+</main>
+
+<!-- MODAL -->
+<div id="modal-variaciones" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center">
+<div class="bg-white p-4 rounded w-80">
+<h3 id="modal-titulo" class="font-bold mb-3"></h3>
+<div id="opciones-variacion"></div>
+<button onclick="cerrarModal()" class="mt-3 text-gray-500">Cerrar</button>
+</div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
