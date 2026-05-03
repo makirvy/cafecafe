@@ -1,36 +1,52 @@
+// ================= CONFIGURACIÓN INICIAL COMPLETA =================
 const productosIniciales = [
     // BEBIDAS
     { id: "P001", nombre: "Agua", precio: 1.00, stock: 22, categoria: "Bebidas" },
-    { id: "P002", nombre: "Jugo", precio: 0.50, stock: 69, categoria: "Bebidas" },
-    { id: "P003", nombre: "Soda", categoria: "Bebidas", variaciones: [
+    { id: "P002", nombre: "Café", categoria: "Bebidas", variaciones: [
+        { n: "Café Negro", p: 0.50, s: 50 },
+        { n: "Café con Leche", p: 0.85, s: 50 }
+    ]},
+    { id: "P003", nombre: "Té Caliente", categoria: "Bebidas", variaciones: [
+        { n: "Té Normal", p: 0.50, s: 44 },
+        { n: "Té con Leche", p: 0.65, s: 20 }
+    ]},
+    { id: "P004", nombre: "Jugos", categoria: "Bebidas", variaciones: [
+        { n: "Jugo Chico", p: 0.50, s: 69 },
+        { n: "Jugo del Valle", p: 0.75, s: 10 },
+        { n: "Té Frío", p: 0.85, s: 15 }
+    ]},
+    { id: "P005", nombre: "Soda", categoria: "Bebidas", variaciones: [
         { n: "Soda Regular", p: 1.25, s: 31 },
-        { n: "Soda Chic Bote", p: 0.75, s: 0 }
+        { n: "Soda Chic Bote", p: 0.75, s: 10 }
     ]},
-    { id: "P017", nombre: "Jugo/Té", categoria: "Bebidas", variaciones: [
-        { n: "Jugo del Valle", p: 0.75, s: 3 },
-        { n: "Té Frío", p: 0.85, s: 11 }
-    ]},
-    { id: "P004", nombre: "Té Caliente", precio: 0.50, stock: 44, categoria: "Bebidas" },
-    { id: "P005", nombre: "Chocolate", precio: 1.00, stock: 13, categoria: "Bebidas" },
+    { id: "P013", nombre: "Chocolate", precio: 1.00, stock: 13, categoria: "Bebidas" },
 
     // SNACKS
-    { id: "P006", nombre: "Galletas", precio: 0.35, stock: 71, categoria: "Snacks" },
-    { id: "P007", nombre: "Chiwis", precio: 0.65, stock: 26, categoria: "Snacks" },
+    { id: "P006", nombre: "Chiwuis", categoria: "Snacks", variaciones: [
+        { n: "Rizadas Mayonesa", p: 0.65, s: 15 },
+        { n: "Cebolla", p: 0.65, s: 15 },
+        { n: "Doritos", p: 0.65, s: 15 },
+        { n: "Golpe", p: 0.65, s: 15 }
+    ]},
+    { id: "P007", nombre: "Galletas", categoria: "Snacks", variaciones: [
+        { n: "Sorbeto", p: 0.35, s: 25 },
+        { n: "Crisp de Sal", p: 0.35, s: 25 }
+    ]},
 
     // COMIDA
-    { id: "P008", nombre: "Emparedados", precio: 2.00, stock: 12, categoria: "Comida" },
-    { id: "P009", nombre: "Empanadas", precio: 1.00, stock: 10, categoria: "Comida" },
-    { id: "P010", nombre: "Empanadas Especiales", categoria: "Comida", variaciones: [
-        { n: "Empanada Pollo", p: 1.00, s: 0 },
-        { n: "Empanada Carne", p: 1.00, s: 19 }
+    { id: "P008", nombre: "Empanadas", categoria: "Comida", variaciones: [
+        { n: "Jamón y Queso", p: 1.00, s: 20 },
+        { n: "Pollo", p: 1.00, s: 20 },
+        { n: "Carne", p: 1.00, s: 20 }
     ]},
+    { id: "P009", nombre: "Emparedados", precio: 2.00, stock: 12, categoria: "Comida" },
+    { id: "P014", nombre: "Hot Dog", precio: 2.00, stock: 5, categoria: "Comida" },
     { id: "P011", nombre: "Mafa", precio: 0.50, stock: 46, categoria: "Comida" },
 
-    // OTROS
-    { id: "P012", nombre: "Fruta", precio: 1.50, stock: 0, categoria: "Otros" },
-    { id: "P014", nombre: "Hot Dog", precio: 2.00, stock: 0, categoria: "Comida" },
-    { id: "P015", nombre: "Choco Cream", precio: 0.65, stock: 0, categoria: "Otros" },
-    { id: "P016", nombre: "Arroz con Leche", precio: 1.00, stock: 0, categoria: "Otros" },
+    // OTROS (POSTRES Y VARIOS)
+    { id: "P012", nombre: "Fruta", precio: 1.50, stock: 5, categoria: "Otros" },
+    { id: "P015", nombre: "Choco Cream", precio: 0.65, stock: 8, categoria: "Otros" },
+    { id: "P016", nombre: "Arroz con Leche", precio: 1.00, stock: 10, categoria: "Otros" },
     { id: "P999", nombre: "Otros", variable: true, categoria: "Otros" }
 ];
 
@@ -55,7 +71,7 @@ function cargarCategorias() {
 
     cont.innerHTML = cats.map(c => `
         <button onclick="filtrarCategoria('${c}')"
-        class="px-4 py-2 rounded-full font-bold transition ${categoriaActiva === c ? 'bg-blue-900 text-white shadow-md' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}">
+        class="px-6 py-3 rounded-full font-black text-lg transition ${categoriaActiva === c ? 'bg-blue-900 text-white shadow-lg' : 'bg-gray-200 text-gray-700'}">
         ${c}
         </button>
     `).join('');
@@ -81,18 +97,17 @@ function cargarProductos() {
         const estaAgotado = !p.variable && stockTotal <= 0;
 
         const btn = document.createElement('button');
-        btn.className = `p-4 rounded-xl border-b-4 flex flex-col items-center justify-center min-h-[110px] transition shadow-sm ${estaAgotado ? 'bg-gray-100 opacity-50 border-gray-400' : 'bg-white border-blue-900 active:scale-95'}`;
+        btn.className = `p-4 rounded-2xl border-b-8 flex flex-col items-center justify-center min-h-[140px] transition shadow-md ${estaAgotado ? 'bg-gray-100 opacity-50 border-gray-400' : 'bg-white border-blue-900 active:scale-95'}`;
         
-        // Lógica de visualización: Muestra "+" si tiene variaciones o es manual
         const visualPrecio = (p.variable || p.variaciones) 
-            ? '<span class="text-2xl font-black text-blue-800">+</span>' 
-            : `<span class="text-lg font-black text-blue-800">$${p.precio.toFixed(2)}</span>`;
+            ? '<span class="text-4xl font-black text-blue-800">+</span>' 
+            : `<span class="text-2xl font-black text-blue-800">$${p.precio.toFixed(2)}</span>`;
 
         btn.innerHTML = `
-            <span class="font-black uppercase text-[10px] text-gray-600 mb-1">${p.nombre}</span>
+            <span class="font-black uppercase text-sm text-gray-700 mb-2">${p.nombre}</span>
             ${visualPrecio}
-            <span class="text-[9px] font-bold mt-1 ${stockTotal < 5 ? 'text-red-500' : 'text-gray-400'}">
-                ${p.variable ? 'COBRO LIBRE' : 'STOCK: ' + stockTotal}
+            <span class="text-xs font-bold mt-2 ${stockTotal < 5 ? 'text-red-500' : 'text-gray-500'}">
+                ${p.variable ? 'COBRO LIBRE' : 'DISP: ' + stockTotal}
             </span>
         `;
 
@@ -124,7 +139,7 @@ function abrirModal(p) {
 
     cuerpo.innerHTML = p.variaciones.map(v => `
         <button onclick="agregarAlCarrito('${v.n}', ${v.p}); cerrarModal();"
-        class="w-full p-4 border-2 border-blue-100 rounded-xl mb-2 flex justify-between items-center font-bold hover:bg-blue-50 transition ${v.s <= 0 ? 'opacity-50 pointer-events-none bg-gray-100' : 'text-blue-900'}">
+        class="w-full p-6 border-4 border-blue-100 rounded-2xl mb-3 flex justify-between items-center font-black text-xl hover:bg-blue-50 transition ${v.s <= 0 ? 'opacity-50 pointer-events-none bg-gray-100' : 'text-blue-900'}">
             <span>${v.n}</span>
             <span>$${v.p.toFixed(2)}</span>
         </button>
@@ -146,12 +161,12 @@ function agregarAlCarrito(nombre, precio) {
 function actualizarCarritoUI() {
     const lista = document.getElementById('lista-pedido');
     lista.innerHTML = carrito.map((i, idx) => `
-        <div class="flex justify-between items-center bg-gray-50 p-2 rounded-lg border-b border-gray-200">
+        <div class="flex justify-between items-center bg-white p-3 mb-2 rounded-xl border-l-8 border-blue-900 shadow-sm">
             <div class="flex flex-col">
-                <span class="text-[11px] font-black uppercase">${i.nombre}</span>
-                <span class="text-blue-700 font-bold">$${i.precio.toFixed(2)}</span>
+                <span class="text-sm font-black uppercase text-gray-800">${i.nombre}</span>
+                <span class="text-blue-700 font-black text-lg">$${i.precio.toFixed(2)}</span>
             </div>
-            <button onclick="eliminarItem(${idx})" class="text-red-500 hover:bg-red-100 p-1 rounded">❌</button>
+            <button onclick="eliminarItem(${idx})" class="text-red-500 bg-red-50 p-2 rounded-full text-xl">✕</button>
         </div>
     `).join('');
 
@@ -216,11 +231,11 @@ function renderizarReportes() {
     const tablaVentas = document.getElementById('tabla-ventas-cuerpo');
 
     tablaVentas.innerHTML = ventas.slice().reverse().map(v => `
-        <tr class="border-b text-[11px] hover:bg-gray-50">
-            <td class="p-2">${v.h}</td>
-            <td class="p-2 uppercase font-medium">${v.items}</td>
-            <td class="p-2 font-bold">${v.m}</td>
-            <td class="p-2 font-black text-blue-900">$${v.t.toFixed(2)}</td>
+        <tr class="border-b text-sm hover:bg-gray-50">
+            <td class="p-3">${v.h}</td>
+            <td class="p-3 uppercase font-bold">${v.items}</td>
+            <td class="p-3 font-black text-blue-700">${v.m}</td>
+            <td class="p-3 font-black">$${v.t.toFixed(2)}</td>
         </tr>
     `).join('');
 
@@ -241,23 +256,23 @@ function renderInventario() {
     tabla.innerHTML = db.filter(p => !p.variable).map(p => {
         if(p.variaciones) {
             return p.variaciones.map(v => `
-                <tr class="border-b text-[12px]">
-                    <td class="p-2 font-bold">${p.nombre}</td>
-                    <td class="p-2 italic">${v.n}</td>
-                    <td class="p-2 font-black ${v.s < 5 ? 'text-red-600' : 'text-green-700'}">${v.s}</td>
-                    <td class="p-2 text-right">
-                        <button onclick="sumarStockVar('${p.id}','${v.n}')" class="bg-blue-600 text-white px-2 rounded shadow">+</button>
+                <tr class="border-b text-sm">
+                    <td class="p-3 font-black uppercase">${p.nombre}</td>
+                    <td class="p-3 italic text-gray-600">${v.n}</td>
+                    <td class="p-3 font-black ${v.s < 5 ? 'text-red-600' : 'text-green-700'}">${v.s}</td>
+                    <td class="p-3 text-right">
+                        <button onclick="sumarStockVar('${p.id}','${v.n}')" class="bg-blue-600 text-white px-4 py-1 rounded-lg shadow-md font-black">+</button>
                     </td>
                 </tr>
             `).join('');
         } else {
             return `
-                <tr class="border-b text-[12px]">
-                    <td class="p-2 font-bold">${p.nombre}</td>
-                    <td class="p-2 text-gray-400">-</td>
-                    <td class="p-2 font-black ${p.stock < 5 ? 'text-red-600' : 'text-green-700'}">${p.stock}</td>
-                    <td class="p-2 text-right">
-                        <button onclick="sumarStock('${p.id}')" class="bg-blue-600 text-white px-2 rounded shadow">+</button>
+                <tr class="border-b text-sm">
+                    <td class="p-3 font-black uppercase">${p.nombre}</td>
+                    <td class="p-3 text-gray-400">-</td>
+                    <td class="p-3 font-black ${p.stock < 5 ? 'text-red-600' : 'text-green-700'}">${p.stock}</td>
+                    <td class="p-3 text-right">
+                        <button onclick="sumarStock('${p.id}')" class="bg-blue-600 text-white px-4 py-1 rounded-lg shadow-md font-black">+</button>
                     </td>
                 </tr>
             `;
